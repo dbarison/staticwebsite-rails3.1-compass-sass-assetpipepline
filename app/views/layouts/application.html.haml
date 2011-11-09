@@ -1,0 +1,23 @@
+!!! 5
+%html
+  %head
+    %meta{ :charset => 'utf-8' }/
+    %meta{ 'name' => 'keywords', :content => yield(:keywords) || "Site keywords" }/
+    %meta{ 'name' => 'description', :content => yield(:desc) || "Site desc" }/
+    %link{ :rel => 'canonical', :href => yield(:canonical) || "http://siteurl.com" }
+    %meta{ 'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1' }/
+    %title= yield(:title) + ' | ' +  "Rails 3.1 static boilerplate"
+    = javascript_include_tag 'modernizr'
+    /[if lt IE 8]
+      = stylesheet_link_tag :ie
+    = stylesheet_link_tag "application"
+
+  %body{:class => yield(:body_class)}
+    #main
+      %header= render 'header'
+      = yield
+      .stickyfooter
+    %footer= render 'footer'
+
+    = javascript_include_tag "application"
+    = render 'analytics'
